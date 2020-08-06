@@ -1,0 +1,6 @@
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\BLL_DAL\bin\Debug\BLL_DAL.dll.config
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\BLL_DAL\bin\Debug\BLL_DAL.dll
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\BLL_DAL\bin\Debug\BLL_DAL.pdb
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\BLL_DAL\obj\Debug\BLL_DAL.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\BLL_DAL\obj\Debug\BLL_DAL.dll
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\BLL_DAL\obj\Debug\BLL_DAL.pdb

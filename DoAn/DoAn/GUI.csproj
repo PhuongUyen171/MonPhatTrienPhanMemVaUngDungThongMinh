@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6178900A-EE08-4602-8EE0-3737B1E64ED8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DoAn</RootNamespace>
+    <AssemblyName>DoAn</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BLL">
+      <HintPath>..\BLL\bin\Debug\BLL.dll</HintPath>
+    </Reference>
+    <Reference Include="BLL_DAL">
+      <HintPath>..\BLL_DAL\bin\Debug\BLL_DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.37, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ThietKeControl">
+      <HintPath>..\ThietKeControl\bin\Debug\ThietKeControl.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChucVu.cs" />
+    <Compile Include="frmCauHinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCauHinh.Designer.cs">
+      <DependentUpon>frmCauHinh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmChiTietQuy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChiTietQuy.Designer.cs">
+      <DependentUpon>frmChiTietQuy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmChucVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChucVu.Designer.cs">
+      <DependentUpon>frmChucVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDangNhap.Designer.cs">
+      <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDoiMatKhau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDoiMatKhau.Designer.cs">
+      <DependentUpon>frmDoiMatKhau.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGioiThieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGioiThieu.Designer.cs">
+      <DependentUpon>frmGioiThieu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNhomHangHoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNhomHangHoa.Designer.cs">
+      <DependentUpon>frmNhomHangHoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNhomKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNhomKhachHang.Designer.cs">
+      <DependentUpon>frmNhomKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNoiDungThuChi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNoiDungThuChi.Designer.cs">
+      <DependentUpon>frmNoiDungThuChi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPhieuKiemKho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPhieuKiemKho.Designer.cs">
+      <DependentUpon>frmPhieuKiemKho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPhieuNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPhieuNhap.Designer.cs">
+      <DependentUpon>frmPhieuNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPhieuThuChi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPhieuThuChi.Designer.cs">
+      <DependentUpon>frmPhieuThuChi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPhucHoi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPhucHoi.Designer.cs">
+      <DependentUpon>frmPhucHoi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPOS.Designer.cs">
+      <DependentUpon>frmPOS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSanPham.Designer.cs">
+      <DependentUpon>frmSanPham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSaoLuu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSaoLuu.Designer.cs">
+      <DependentUpon>frmSaoLuu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThongTinSD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThongTinSD.Designer.cs">
+      <DependentUpon>frmThongTinSD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTimKiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTimKiem.Designer.cs">
+      <DependentUpon>frmTimKiem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginResult.cs" />
+    <Compile Include="NguoiDung.cs" />
+    <Compile Include="NhomKhachHang.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmCauHinh.resx">
+      <DependentUpon>frmCauHinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChiTietQuy.resx">
+      <DependentUpon>frmChiTietQuy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChucVu.resx">
+      <DependentUpon>frmChucVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDangNhap.resx">
+      <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDoiMatKhau.resx">
+      <DependentUpon>frmDoiMatKhau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGioiThieu.resx">
+      <DependentUpon>frmGioiThieu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNhomHangHoa.resx">
+      <DependentUpon>frmNhomHangHoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNhomKhachHang.resx">
+      <DependentUpon>frmNhomKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNoiDungThuChi.resx">
+      <DependentUpon>frmNoiDungThuChi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPhieuKiemKho.resx">
+      <DependentUpon>frmPhieuKiemKho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPhieuNhap.resx">
+      <DependentUpon>frmPhieuNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPhieuThuChi.resx">
+      <DependentUpon>frmPhieuThuChi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPhucHoi.resx">
+      <DependentUpon>frmPhucHoi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPOS.resx">
+      <DependentUpon>frmPOS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSanPham.resx">
+      <DependentUpon>frmSanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSaoLuu.resx">
+      <DependentUpon>frmSaoLuu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThongTinSD.resx">
+      <DependentUpon>frmThongTinSD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTimKiem.resx">
+      <DependentUpon>frmTimKiem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resource\Bột Than Hoạt Tính Đánh Trắng Răng Teeth Whitening.jpg" />
+    <Content Include="Resource\Cám Gạo Trà Xanh.jpg" />
+    <Content Include="Resource\Dưỡng Mắt 3W Clinic Collagen Lifting Eye Cream 35ml.jpg" />
+    <Content Include="Resource\Dưỡng Trắng Innisfree Jeju Cherry Blossom Tone-Up Cream.jpg" />
+    <Content Include="Resource\Dầu Gội Cho Tóc Nhuộm TRESemmé Color Radiance 250ml.jpg" />
+    <Content Include="Resource\Dầu Gội Tóc Thường Dưỡng Sinh Gia Truyền Hương Như 500ml.jpg" />
+    <Content Include="Resource\Dầu Gội Xả Head Shoulder 2 In 1 Dry Scalp Care 950ml.jpg" />
+    <Content Include="Resource\Dầu Xả Biotin &amp; Collagen Thickening 400ml.jpg" />
+    <Content Include="Resource\Gel Rửa Tay Bath Body Works Japanese Cherry Blossom.jpg" />
+    <Content Include="Resource\Gel Rửa Tay Khô Bath Body Works Honolulu Sun 29ml.jpg" />
+    <Content Include="Resource\Hộp Quà Hình Vuông Lớn.jpg" />
+    <Content Include="Resource\Kem Dưỡng Da Tay Mamonde Flower Scented 50ml.jpg" />
+    <Content Include="Resource\Kem Dưỡng Mắt Clinique All About Eyes 7ml.jpg" />
+    <Content Include="Resource\Kem Dưỡng Mắt Innisfree Green Tea Seed Eye Cream 30ml.jpg" />
+    <Content Include="Resource\Kem Lót Sugao Snow Whipped Cream SPF 23.jpg" />
+    <Content Include="Resource\Kem Mắt AHC Ageless Real Eye Cream For Face 30ml.jpg" />
+    <Content Include="Resource\Kem Nền Innisfree My Foundation 30ml.jpg" />
+    <Content Include="Resource\Kem Đánh Răng Baking Soda Toothpaste 220g.jpg" />
+    <Content Include="Resource\Kem Đánh Răng Colgate Sensitive Whitening 170g.jpg" />
+    <Content Include="Resource\Kem Đánh Răng Crest 3D White Radiant Mint 99gr.jpg" />
+    <Content Include="Resource\Khay Đựng Mỹ Phẩm BNBS.jpg" />
+    <Content Include="Resource\Khay Đựng Son 12 Ô Mica Trong Suốt.jpg" />
+    <Content Include="Resource\Miếng Lột Mụn Đầu Đen Innisfree Jeju Volcanic Nose Pack.jpg" />
+    <Content Include="Resource\Muối Tắm A Bonné Snaily Yogurt 350gr.jpg" />
+    <Content Include="Resource\Muối Tắm Sữa Tẩy Tế Bào Chết A Bonné Spa Milk Salt.jpg" />
+    <Content Include="Resource\Máy Làm Trắng Răng Crest 3D White Light.jpg" />
+    <Content Include="Resource\Nước Hoa Dạng Lăn Victoria Secret Crush EDP 7ml.jpg" />
+    <Content Include="Resource\Nước Hoa Hồng Innisfree Broccoli Clearing Toner.jpg" />
+    <Content Include="Resource\Nước Hoa Nam Gatsby Secret Style 60ml.jpg" />
+    <Content Include="Resource\Nước Hoa Nữ Bvlgari Rose Goldea EDP.jpg" />
+    <Content Include="Resource\Nước Hoa Nữ Christian Dior Miss Dior Eau De Parfum.jpg" />
+    <Content Include="Resource\Nước Hoa Nữ Versace Bright Crystal Absolu EDP 50ml.jpg" />
+    <Content Include="Resource\Nước Tẩy Sơn Móng Etude House Nail Remover 100ml.jpg" />
+    <Content Include="Resource\Nến Thơm Bath &amp; Body Works Cinnamon Caramel Swirl 411gr.jpg" />
+    <Content Include="Resource\Phấn Nước Innisfree Water Fit Cushion SPF 34 14g.jpg" />
+    <Content Include="Resource\Phấn Phủ Dạng Bột Innisfree No Sebum Moisture Powder 5g.jpg" />
+    <Content Include="Resource\Rửa Tay Khô Bath &amp; Body Works Twisted Peppermint 29ml.jpg" />
+    <Content Include="Resource\Serum Dưỡng Mi Maybelline Lash Sensational 5.3ml.jpg" />
+    <Content Include="Resource\Son Kem Dưỡng Dior Lip Maximizer 012 6ml.jpg" />
+    <Content Include="Resource\Son Kem Lì 3CE Cloud Velvet Tint Beige Avenue.jpg" />
+    <Content Include="Resource\Son Kem TOI Marshmallow Velvet Tint M Series.jpg" />
+    <Content Include="Resource\Son Lì Make Up For Ever Artist Liquid Matte.jpg" />
+    <Content Include="Resource\Son Lì Mamonde True Color Lipstick 3.5g.jpg" />
+    <Content Include="Resource\Sáp Dưỡng Da Vaseline Blue Seal Vitamin E 50ml.jpg" />
+    <Content Include="Resource\Tinh Chất The Body Shop Tea Tree.jpg" />
+    <Content Include="Resource\Tạo Khối Rimmel Natural Bronzer 022 Sun Bronze.jpg" />
+    <Content Include="Resource\Tẩy Tế Bào Chết Body Scentio Riceberry Cream 200gr.jpg" />
+    <Content Include="Resource\Tẩy Tế Bào Chết ESI Bio SkinCare Face &amp; Body Strawberry 250ml.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{163688E2-6F6B-4C2F-8598-BE0674B46284}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

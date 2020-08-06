@@ -1,0 +1,11 @@
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\ThietKeControl\bin\Debug\ThietKeControl.dll
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\ThietKeControl\bin\Debug\ThietKeControl.pdb
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\ThietKeControl\bin\Debug\DevComponents.DotNetBar2.dll
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\ThietKeControl\bin\Debug\DevComponents.DotNetBar2.xml
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\ThietKeControl\obj\Debug\ThietKeControl.Properties.Resources.resources
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\ThietKeControl\obj\Debug\ThietKeControl.csproj.GenerateResource.cache
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\ThietKeControl\obj\Debug\ThietKeControl.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\ThietKeControl\obj\Debug\ThietKeControl.csproj.CopyComplete
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\ThietKeControl\obj\Debug\ThietKeControl.dll
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\ThietKeControl\obj\Debug\ThietKeControl.pdb
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\ThietKeControl\obj\Debug\ThietKeControl.csprojAssemblyReference.cache
