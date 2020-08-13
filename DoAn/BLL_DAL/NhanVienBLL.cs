@@ -84,5 +84,17 @@ namespace BLL_DAL
             return nhanVien;
         }
 
+        public IQueryable<NHAN_VIEN> GetNhanVienTheoChucVu(string maCV)
+        {
+            var nhanVien = from nv in data.NHAN_VIENs where nv.MaCV == maCV select nv;
+            return nhanVien;
+        }
+
+        public NHAN_VIEN TimTaiKhoanNhanVien(string taiKhoan)
+        {
+            DANG_NHAP dn = data.DANG_NHAPs.Where(t => t.TaiKhoan == taiKhoan).FirstOrDefault();
+            NHAN_VIEN nv = data.NHAN_VIENs.Where(t => t.MaNV == dn.MaNV).FirstOrDefault();
+            return nv;
+        }
     }
 }

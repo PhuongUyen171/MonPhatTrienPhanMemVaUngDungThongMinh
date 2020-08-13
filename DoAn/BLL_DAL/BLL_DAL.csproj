@@ -44,6 +44,13 @@
   <ItemGroup>
     <Compile Include="ChiTietKiemKhoBLL.cs" />
     <Compile Include="ChiTietPhieuNhapBLL.cs" />
+    <Compile Include="CHI_TIET_PHIEU_NHAP.cs" />
+    <Compile Include="CHUC_VU.cs" />
+    <Compile Include="HoaDonBLL.cs" />
+    <Compile Include="KHACH_HANG.cs" />
+    <Compile Include="LOAI_KHACH_HANG.cs" />
+    <Compile Include="NHAN_VIEN.cs" />
+    <Compile Include="NHA_CUNG_CAP.cs" />
     <Compile Include="DangNhapBLL.cs" />
     <Compile Include="NguoiDungBLL.cs" />
     <Compile Include="NhaCungCapBLL.cs" />
@@ -63,7 +70,10 @@
       <DependentUpon>QLShop.dbml</DependentUpon>
     </Compile>
     <Compile Include="SanPhamBLL.cs" />
+    <Compile Include="SAN_PHAM.cs" />
+    <Compile Include="THE_LOAI_SAN_PHAM.cs" />
     <Compile Include="ThuongHieuBLL.cs" />
+    <Compile Include="THUONG_HIEU.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -83,5 +93,6 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

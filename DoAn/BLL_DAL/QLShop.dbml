@@ -2,7 +2,7 @@
   <Connection Mode="AppSettings" ConnectionString="Data Source=UYENPU\SQLEXPRESS;Initial Catalog=QLShopMP;User ID=sa" SettingsObjectName="BLL_DAL.Properties.Settings" SettingsPropertyName="QLShopMPConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.CHI_TIET_HOA_DON" Member="CHI_TIET_HOA_DONs">
     <Type Name="CHI_TIET_HOA_DON">
-      <Column Name="MaHD" Type="System.String" DbType="NVarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaHD" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaSP" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="GiaVon" Type="System.Decimal" DbType="Money" CanBeNull="true" />
       <Column Name="GiaBan" Type="System.Decimal" DbType="Money" CanBeNull="true" />
@@ -77,7 +77,7 @@
   </Table>
   <Table Name="dbo.HOA_DON" Member="HOA_DONs">
     <Type Name="HOA_DON">
-      <Column Name="MaHD" Type="System.String" DbType="NVarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaHD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="MaKH" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="MaNV" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="ThoiGian" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
@@ -217,7 +217,7 @@
   <Table Name="dbo.PHIEU_TRA_HANG_BAN" Member="PHIEU_TRA_HANG_BANs">
     <Type Name="PHIEU_TRA_HANG_BAN">
       <Column Name="MaPTB" Type="System.String" DbType="NVarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MaHD" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="MaHD" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MaNV" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Column Name="MaKH" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="ChiPhi" Type="System.Decimal" DbType="Money" CanBeNull="true" />

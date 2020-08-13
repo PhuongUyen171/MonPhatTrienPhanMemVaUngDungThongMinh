@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPhieuNhap));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.grThongTinPN = new System.Windows.Forms.GroupBox();
             this.btnLuuPN = new DevComponents.DotNetBar.ButtonX();
@@ -74,6 +74,7 @@
             this.mnuXoaSP = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSuaSP = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuInPN = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnXuatPhieu = new DevComponents.DotNetBar.ButtonX();
             this.tableLayoutPanel1.SuspendLayout();
             this.grThongTinPN.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -242,6 +243,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnXuatPhieu);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.cboPhieuNhap);
             this.panel1.Controls.Add(this.btnSuaCTPN);
@@ -285,7 +287,7 @@
             this.btnSuaCTPN.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSuaCTPN.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnSuaCTPN.Image = ((System.Drawing.Image)(resources.GetObject("btnSuaCTPN.Image")));
-            this.btnSuaCTPN.Location = new System.Drawing.Point(197, 281);
+            this.btnSuaCTPN.Location = new System.Drawing.Point(166, 283);
             this.btnSuaCTPN.Name = "btnSuaCTPN";
             this.btnSuaCTPN.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnSuaCTPN.Size = new System.Drawing.Size(50, 50);
@@ -298,7 +300,7 @@
             this.btnXoaCTPN.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnXoaCTPN.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnXoaCTPN.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaCTPN.Image")));
-            this.btnXoaCTPN.Location = new System.Drawing.Point(129, 281);
+            this.btnXoaCTPN.Location = new System.Drawing.Point(98, 283);
             this.btnXoaCTPN.Name = "btnXoaCTPN";
             this.btnXoaCTPN.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnXoaCTPN.Size = new System.Drawing.Size(50, 50);
@@ -311,7 +313,7 @@
             this.btnThemCTPN.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnThemCTPN.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnThemCTPN.Image = ((System.Drawing.Image)(resources.GetObject("btnThemCTPN.Image")));
-            this.btnThemCTPN.Location = new System.Drawing.Point(60, 281);
+            this.btnThemCTPN.Location = new System.Drawing.Point(29, 283);
             this.btnThemCTPN.Name = "btnThemCTPN";
             this.btnThemCTPN.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btnThemCTPN.Size = new System.Drawing.Size(50, 50);
@@ -400,8 +402,8 @@
             // dtgvChiTietPN
             // 
             this.dtgvChiTietPN.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dtgvChiTietPN.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dtgvChiTietPN.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dtgvChiTietPN.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvChiTietPN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvChiTietPN.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -439,8 +441,8 @@
             // Column3
             // 
             this.Column3.DataPropertyName = "GiaNhap";
-            dataGridViewCellStyle2.Format = "N0";
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Format = "N0";
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle4;
             this.Column3.HeaderText = "Giá nhập";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
@@ -505,6 +507,20 @@
             this.mnuInPN.Size = new System.Drawing.Size(172, 24);
             this.mnuInPN.Text = "In phiếu nhập";
             this.mnuInPN.Click += new System.EventHandler(this.mnuInPN_Click);
+            // 
+            // btnXuatPhieu
+            // 
+            this.btnXuatPhieu.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnXuatPhieu.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnXuatPhieu.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatPhieu.Image")));
+            this.btnXuatPhieu.Location = new System.Drawing.Point(237, 283);
+            this.btnXuatPhieu.Name = "btnXuatPhieu";
+            this.btnXuatPhieu.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
+            this.btnXuatPhieu.Size = new System.Drawing.Size(50, 50);
+            this.btnXuatPhieu.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnXuatPhieu.TabIndex = 19;
+            this.btnXuatPhieu.Tooltip = "Xuất phiếu nhập hàng";
+            this.btnXuatPhieu.Click += new System.EventHandler(this.btnXuatPhieu_Click);
             // 
             // frmPhieuNhap
             // 
@@ -576,5 +592,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuXoaSP;
         private System.Windows.Forms.ToolStripMenuItem mnuSuaSP;
         private System.Windows.Forms.ToolStripMenuItem mnuInPN;
+        private DevComponents.DotNetBar.ButtonX btnXuatPhieu;
     }
 }

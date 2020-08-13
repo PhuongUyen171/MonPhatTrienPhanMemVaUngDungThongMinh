@@ -4,3 +4,4 @@ C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\DAL\bin\Debug\DAL
 C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\DAL\obj\Debug\DAL.dll
 C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\DAL\obj\Debug\DAL.pdb
+C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\DAL\obj\Debug\DAL.csprojAssemblyReference.cache

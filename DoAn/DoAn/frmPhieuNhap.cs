@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL_DAL;
+using GUI;
 using DevComponents.DotNetBar;
 
 namespace DoAn
@@ -27,6 +28,7 @@ namespace DoAn
         {
             InitializeComponent();
         }
+
         public frmPhieuNhap(PHIEU_NHAP phNhap)
         {
             InitializeComponent();
@@ -40,9 +42,7 @@ namespace DoAn
             loadNhaCungCap();
             loadPhieuNhap();
 
-
             loadCTPN(cboPhieuNhap.SelectedValue.ToString());
-
 
             if (phieuNhap != null)
             {
@@ -92,10 +92,10 @@ namespace DoAn
         {
             try
             {
-                cboSP.SelectedValue = dtgvChiTietPN.CurrentRow.Cells[1].Value.ToString();
-                txtGiaNhap.Text = Convert.ToInt64(dtgvChiTietPN.CurrentRow.Cells[2].Value) + "";
-                txtGG.Text = dtgvChiTietPN.CurrentRow.Cells[3].Value.ToString();
-                txtSL.Text = dtgvChiTietPN.CurrentRow.Cells[4].Value.ToString();
+                cboSP.SelectedValue = dtgvChiTietPN.CurrentRow.Cells[2].Value.ToString();
+                txtGiaNhap.Text = Convert.ToInt64(dtgvChiTietPN.CurrentRow.Cells[3].Value) + "";
+                txtGG.Text = dtgvChiTietPN.CurrentRow.Cells[4].Value.ToString();
+                txtSL.Text = dtgvChiTietPN.CurrentRow.Cells[5].Value.ToString();
             }
             catch (Exception)
             {
@@ -204,7 +204,47 @@ namespace DoAn
 
         private void cboSP_TextChanged(object sender, EventArgs e)
         {
-            txtGiaNhap.Text = sp.GetGiaTheoMaSP(cboSP.SelectedValue.ToString())+"";
+            //try
+            //{
+            //    txtGiaNhap.Text = sp.GetGiaTheoMaSP(cboSP.SelectedValue.ToString()) + "";
+            //}
+            //catch (Exception)
+            //{
+            //    txtGiaNhap.Text = sp.GetGiaTheoMaSP("SP001") + "";
+            //}
+            
+        }
+
+        private void btnXuatPhieu_Click(object sender, EventArgs e)
+        {
+            ExcelExport excel = new ExcelExport();
+            SaveFileDialog saveFile = new SaveFileDialog();
+            if (dtgvChiTietPN.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất", "ERROR");
+                return;
+            }
+            List<CHI_TIET_PHIEU_NHAP> pList = new List<CHI_TIET_PHIEU_NHAP>();
+            foreach (DataGridViewRow item in dtgvChiTietPN.Rows)
+            {
+                CHI_TIET_PHIEU_NHAP i = new CHI_TIET_PHIEU_NHAP();
+                i.MaSP = item.Cells[5].Value.ToString();
+                i.MaPN = item.Cells[4].Value.ToString();
+                i.SoLuong = Convert.ToInt32(item.Cells[8].Value.ToString());
+                i.GiaNhap = Convert.ToInt32(item.Cells[6].Value);
+                i.DonViTinh = item.Cells[3].Value.ToString();
+                
+                //i.DonViTinh = item.Cells[3].Value.ToString();
+                //i.GiaBan = Convert.ToInt32(item.Cells[5].Value);
+                //i.GiaVon = Convert.ToInt32(item.Cells[6].Value); ;
+                pList.Add(i);
+            }
+            string path = string.Empty;
+            excel.ExportPhieuNhap(pList, ref path, false);
+            if (!string.IsNullOrEmpty(path) && MessageBox.Show("Bạn có muốn mở file không?", "Thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start(path);
+            }
         }
     }
 }

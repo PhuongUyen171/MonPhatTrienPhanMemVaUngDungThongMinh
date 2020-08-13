@@ -8,4 +8,3 @@ C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\ThietKeControl\ob
 C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\ThietKeControl\obj\Debug\ThietKeControl.csproj.CopyComplete
 C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\ThietKeControl\obj\Debug\ThietKeControl.dll
 C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\ThietKeControl\obj\Debug\ThietKeControl.pdb
-C:\Users\PC\Desktop\IT\PhatTrienPhanMemVaUngDungThongMinh\DoAn\ThietKeControl\obj\Debug\ThietKeControl.csprojAssemblyReference.cache

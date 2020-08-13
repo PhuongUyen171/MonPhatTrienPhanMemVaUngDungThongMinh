@@ -72,5 +72,10 @@ namespace BLL_DAL
                 return Convert.ToInt64(sp.GiaBan);
             return 0;
         }
+
+        public SAN_PHAM TimKiemSanPham(string ma)
+        {
+            return data.SAN_PHAMs.Where(t => t.MaSP == ma).FirstOrDefault();
+        }
     }
 }

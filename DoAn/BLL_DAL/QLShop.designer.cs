@@ -333,7 +333,7 @@ namespace BLL_DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _MaHD;
+		private int _MaHD;
 		
 		private string _MaSP;
 		
@@ -351,7 +351,7 @@ namespace BLL_DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnMaHDChanging(string value);
+    partial void OnMaHDChanging(int value);
     partial void OnMaHDChanged();
     partial void OnMaSPChanging(string value);
     partial void OnMaSPChanged();
@@ -370,8 +370,8 @@ namespace BLL_DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaHD", DbType="NVarChar(30) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string MaHD
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaHD", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MaHD
 		{
 			get
 			{
@@ -505,7 +505,7 @@ namespace BLL_DAL
 					}
 					else
 					{
-						this._MaHD = default(string);
+						this._MaHD = default(int);
 					}
 					this.SendPropertyChanged("HOA_DON");
 				}
@@ -1838,7 +1838,7 @@ namespace BLL_DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _MaHD;
+		private int _MaHD;
 		
 		private string _MaKH;
 		
@@ -1862,7 +1862,7 @@ namespace BLL_DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnMaHDChanging(string value);
+    partial void OnMaHDChanging(int value);
     partial void OnMaHDChanged();
     partial void OnMaKHChanging(string value);
     partial void OnMaKHChanged();
@@ -1885,8 +1885,8 @@ namespace BLL_DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaHD", DbType="NVarChar(30) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string MaHD
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaHD", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MaHD
 		{
 			get
 			{
@@ -4752,7 +4752,7 @@ namespace BLL_DAL
 		
 		private string _MaPTB;
 		
-		private string _MaHD;
+		private System.Nullable<int> _MaHD;
 		
 		private string _MaNV;
 		
@@ -4772,7 +4772,7 @@ namespace BLL_DAL
     partial void OnCreated();
     partial void OnMaPTBChanging(string value);
     partial void OnMaPTBChanged();
-    partial void OnMaHDChanging(string value);
+    partial void OnMaHDChanging(System.Nullable<int> value);
     partial void OnMaHDChanged();
     partial void OnMaNVChanging(string value);
     partial void OnMaNVChanged();
@@ -4812,8 +4812,8 @@ namespace BLL_DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaHD", DbType="NVarChar(30)")]
-		public string MaHD
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaHD", DbType="Int")]
+		public System.Nullable<int> MaHD
 		{
 			get
 			{
@@ -4963,7 +4963,7 @@ namespace BLL_DAL
 					}
 					else
 					{
-						this._MaHD = default(string);
+						this._MaHD = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("HOA_DON");
 				}

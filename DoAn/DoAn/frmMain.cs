@@ -14,14 +14,13 @@ using BLL;
 using BLL_DAL;
 using System.IO;
 using System.Globalization;
-using BLL_DAL;
+using GUI;
+using DevExpress.XtraReports.UI;
 
 namespace DoAn
 {
     public partial class frmMain : Office2007RibbonForm
     {
-
-
         KhachHangBLL k = new KhachHangBLL();
         LoaiKhachHangBLL lkh = new LoaiKhachHangBLL();
         NhomNguoiDungBLL nnd = new NhomNguoiDungBLL();
@@ -368,6 +367,7 @@ namespace DoAn
         private void itemCuaSoBanHang_Click(object sender, EventArgs e)
         {
             frmPOS frm = new frmPOS();
+            frm.NhanVien = nv.TimTaiKhoanNhanVien(tenDangNhap);
             frm.Show();
         }
 
@@ -488,7 +488,34 @@ namespace DoAn
 
         private void btnExcelNV_Click(object sender, EventArgs e)
         {
+            ExcelExport excel = new ExcelExport();
+            SaveFileDialog saveFile = new SaveFileDialog();
+            if (pnNV.Controls.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất", "ERROR");
+                return;
+            }
+            List<NHAN_VIEN> pList = new List<NHAN_VIEN>();
+            foreach (Control item in pnNV.Controls)
+            {
+                NHAN_VIEN i = new NHAN_VIEN();
+                i.MaNV = item.Tag.ToString();
+                i.TenNV = item.Text;
+                i.SDT = nv.TimNhanVien(i.MaNV).SDT;
+                i.MaCV = nv.TimNhanVien(i.MaNV).MaCV;
+                i.CMND = nv.TimNhanVien(i.MaNV).CMND;
+                i.Email = nv.TimNhanVien(i.MaNV).Email;
+                i.NgaySinh = nv.TimNhanVien(i.MaNV).NgaySinh;
+                pList.Add(i);
+            }
+            string path = string.Empty;
+            excel.ExportNhanVien(pList, ref path, false);
 
+            // Confirm for open file was exported
+            if (!string.IsNullOrEmpty(path) && MessageBox.Show("Bạn có muốn mở file không?", "Thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start(path);
+            }
         }
 
 
@@ -499,16 +526,22 @@ namespace DoAn
         //Form danh sách khách hàng: 3 lớp : còn excel
         private void dtgvKH_SelectionChanged(object sender, EventArgs e)
         {
-            txtMaKH.Text = dtgvKH.CurrentRow.Cells[0].Value.ToString();
-            txtTenKH.Text = dtgvKH.CurrentRow.Cells[1].Value.ToString();
-            cboMaLoaiKH.SelectedValue = dtgvKH.CurrentRow.Cells[2].Value.ToString();
-            dtmNgaySinh_KH.Value = Convert.ToDateTime(dtgvKH.CurrentRow.Cells[3].Value);
-            dtmNDK_KH.Value = Convert.ToDateTime(dtgvKH.CurrentRow.Cells[4].Value);
-            txtCMND_KH.Text = dtgvKH.CurrentRow.Cells[5].Value.ToString();
-            txtSDT_KH.Text = dtgvKH.CurrentRow.Cells[7].Value.ToString();
-            txtEmail_KH.Text = dtgvKH.CurrentRow.Cells[6].Value.ToString();
-            txtDiaChi_KH.Text = dtgvKH.CurrentRow.Cells[8].Value.ToString();
-            txtTongTien_KH.Text = Convert.ToInt32(dtgvKH.CurrentRow.Cells[9].Value) + "";
+            try
+            {
+                txtMaKH.Text = dtgvKH.CurrentRow.Cells[1].Value.ToString();
+                txtTenKH.Text = dtgvKH.CurrentRow.Cells[2].Value.ToString();
+                cboMaLoaiKH.SelectedValue = dtgvKH.CurrentRow.Cells[3].Value.ToString();
+                dtmNgaySinh_KH.Value = Convert.ToDateTime(dtgvKH.CurrentRow.Cells[4].Value);
+                dtmNDK_KH.Value = Convert.ToDateTime(dtgvKH.CurrentRow.Cells[5].Value);
+                txtCMND_KH.Text = dtgvKH.CurrentRow.Cells[6].Value.ToString();
+                txtSDT_KH.Text = dtgvKH.CurrentRow.Cells[7].Value.ToString();
+                txtEmail_KH.Text = dtgvKH.CurrentRow.Cells[8].Value.ToString();
+                txtDiaChi_KH.Text = dtgvKH.CurrentRow.Cells[9].Value.ToString();
+                txtTongTien_KH.Text = Convert.ToInt32(dtgvKH.CurrentRow.Cells[10].Value) + "";
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void btnThemKH_Click(object sender, EventArgs e)
@@ -570,7 +603,35 @@ namespace DoAn
 
         private void btnExcelKH_Click(object sender, EventArgs e)
         {
-
+            ExcelExport excel = new ExcelExport();
+            SaveFileDialog saveFile = new SaveFileDialog();
+            if (dtgvKH.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất", "ERROR");
+                return;
+            }
+            List<KHACH_HANG> pList = new List<KHACH_HANG>();
+            foreach (DataGridViewRow item in dtgvKH.Rows)
+            {
+                KHACH_HANG i = new KHACH_HANG();
+                i.MaKH = item.Cells[1].Value.ToString();
+                i.TenKH = item.Cells[2].Value.ToString();
+                i.MaLoaiKH= item.Cells[3].Value.ToString();
+                i.NgaySinh= Convert.ToDateTime(item.Cells[4].Value.ToString());
+                i.NgayDangKy= Convert.ToDateTime(item.Cells[5].Value.ToString());
+                i.CMND= item.Cells[6].Value.ToString();
+                i.Email= item.Cells[7].Value.ToString();
+                i.SDT= item.Cells[8].Value.ToString();
+                i.DiaChi= item.Cells[9].Value.ToString();
+                i.TongTienMua= Convert.ToInt32(item.Cells[10].Value);
+                pList.Add(i);
+            }
+            string path = string.Empty;
+            excel.ExportKhachHang(pList, ref path, false);
+            if (!string.IsNullOrEmpty(path) && MessageBox.Show("Bạn có muốn mở file không?", "Thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start(path);
+            }
         }
 
 
@@ -621,7 +682,27 @@ namespace DoAn
 
         private void btnExcelNhomHH_Click(object sender, EventArgs e)
         {
-
+            ExcelExport excel = new ExcelExport();
+            SaveFileDialog saveFile = new SaveFileDialog();
+            if (dtgvNhomHH.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất", "ERROR");
+                return;
+            }
+            List<THE_LOAI_SAN_PHAM> pList = new List<THE_LOAI_SAN_PHAM>();
+            foreach (DataGridViewRow item in dtgvNhomHH.Rows)
+            {
+                THE_LOAI_SAN_PHAM i = new THE_LOAI_SAN_PHAM();
+                i.TenLoaiSP = item.Cells[1].Value.ToString();
+                i.MaLoaiSP = item.Cells[0].Value.ToString();
+                pList.Add(i);
+            }
+            string path = string.Empty;
+            excel.ExportNhomHangHoa(pList, ref path, false);
+            if (!string.IsNullOrEmpty(path) && MessageBox.Show("Bạn có muốn mở file không?", "Thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start(path);
+            }
         }
 
         private void btnSuaNhomHH_Click(object sender, EventArgs e)
@@ -735,12 +816,56 @@ namespace DoAn
 
         private void btnExcelNhomCV_Click(object sender, EventArgs e)
         {
-
+            ExcelExport excel = new ExcelExport();
+            SaveFileDialog saveFile = new SaveFileDialog();
+            if (dtgvChucVu.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất", "ERROR");
+                return;
+            }
+            List<CHUC_VU> pList = new List<CHUC_VU>();
+            foreach (DataGridViewRow item in dtgvChucVu.Rows)
+            {
+                CHUC_VU i = new CHUC_VU();
+                i.TenCV = item.Cells[1].Value.ToString();
+                //i.GioiHanDuoi = Convert.ToInt32(item.Cells[2].Value);
+                //i.GioiHanTren = Convert.ToInt32(item.Cells[3].Value);
+                //i.GiamGia = Convert.ToInt32(item.Cells[4].Value.ToString());
+                pList.Add(i);
+            }
+            string path = string.Empty;
+            excel.ExportChucVu(pList, ref path, false);
+            if (!string.IsNullOrEmpty(path) && MessageBox.Show("Bạn có muốn mở file không?", "Thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start(path);
+            }
         }
 
         private void btnExcelNhomKH_Click(object sender, EventArgs e)
         {
-
+            ExcelExport excel = new ExcelExport();
+            SaveFileDialog saveFile = new SaveFileDialog();
+            if (dtgvNhomKH.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất", "ERROR");
+                return;
+            }
+            List<NhomKhachHang> pList = new List<NhomKhachHang>();
+            foreach (DataGridViewRow item in dtgvNhomKH.Rows)
+            {
+                NhomKhachHang i = new NhomKhachHang();
+                i.TenNhomKH = item.Cells[1].Value.ToString();
+                i.GioiHanDuoi = Convert.ToInt32(item.Cells[2].Value);
+                i.GioiHanTren = Convert.ToInt32(item.Cells[3].Value);
+                i.GiamGia = Convert.ToInt32(item.Cells[4].Value.ToString());
+                pList.Add(i);
+            }
+            string path = string.Empty;
+            excel.ExportNhomKH(pList, ref path, false);
+            if (!string.IsNullOrEmpty(path) && MessageBox.Show("Bạn có muốn mở file không?", "Thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start(path);
+            }
         }
 
         private void btnTaiNhomCV_Click(object sender, EventArgs e)
@@ -798,13 +923,13 @@ namespace DoAn
         //Form quản lý nhà cung cấp: linq : còn xuất excel:3 tầng
         private void dtgvNhaCungCap_SelectionChanged(object sender, EventArgs e)
         {
-            txtMaNCC.Text = dtgvNhaCungCap.CurrentRow.Cells[0].Value.ToString();
-            txtTenNCC.Text= dtgvNhaCungCap.CurrentRow.Cells[1].Value.ToString();
-            txtMaSoThue.Text= dtgvNhaCungCap.CurrentRow.Cells[2].Value.ToString();
-            txtDiaChiNCC.Text= dtgvNhaCungCap.CurrentRow.Cells[3].Value.ToString();
-            txtEmailNCC.Text= dtgvNhaCungCap.CurrentRow.Cells[4].Value.ToString();
-            txtSDT_NCC.Text= dtgvNhaCungCap.CurrentRow.Cells[5].Value.ToString();
-            txtTongTienNCC.Text= Convert.ToInt32(dtgvNhaCungCap.CurrentRow.Cells[6].Value)+"";
+            txtMaNCC.Text = dtgvNhaCungCap.CurrentRow.Cells[1].Value.ToString();
+            txtTenNCC.Text= dtgvNhaCungCap.CurrentRow.Cells[2].Value.ToString();
+            txtMaSoThue.Text= dtgvNhaCungCap.CurrentRow.Cells[3].Value.ToString();
+            txtDiaChiNCC.Text= dtgvNhaCungCap.CurrentRow.Cells[4].Value.ToString();
+            txtEmailNCC.Text= dtgvNhaCungCap.CurrentRow.Cells[5].Value.ToString();
+            txtSDT_NCC.Text= dtgvNhaCungCap.CurrentRow.Cells[6].Value.ToString();
+            txtTongTienNCC.Text= Convert.ToInt32(dtgvNhaCungCap.CurrentRow.Cells[7].Value)+"";
         }
 
         private void btnClearNCC_Click(object sender, EventArgs e)
@@ -879,7 +1004,33 @@ namespace DoAn
 
         private void btnExcelNCC_Click(object sender, EventArgs e)
         {
+            ExcelExport excel = new ExcelExport();
+            SaveFileDialog saveFile = new SaveFileDialog();
+            if (dtgvNhaCungCap.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất", "ERROR");
+                return;
+            }
+            List<NHA_CUNG_CAP> pList = new List<NHA_CUNG_CAP>();
+            // Đổ dữ liệu vào danh sách
+            foreach (DataGridViewRow item in dtgvNhaCungCap.Rows)
+            {
+                NHA_CUNG_CAP i = new NHA_CUNG_CAP();
+                i.TenNCC = item.Cells[2].Value.ToString();
+                i.DiaChi = item.Cells[4].Value.ToString();
+                i.SDT = item.Cells[6].Value.ToString();
+                pList.Add(i);
+            }
+            string path = string.Empty;
 
+            //SinhVien sv = svl.TimSinhVien(dtgvSV.CurrentRow.Cells[0].Value.ToString());
+            excel.ExportNhaCungCap(pList, ref path, false);
+
+            // Confirm for open file was exported
+            if (!string.IsNullOrEmpty(path) && MessageBox.Show("Bạn có muốn mở file không?", "Thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start(path);
+            }
         }
 
         private void mnuXoaNCC_Click(object sender, EventArgs e)
@@ -1031,7 +1182,32 @@ namespace DoAn
 
         private void btnExcelSP_Click(object sender, EventArgs e)
         {
-
+            ExcelExport excel = new ExcelExport();
+            SaveFileDialog saveFile = new SaveFileDialog();
+            if (dtgvSanPham.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất", "ERROR");
+                return;
+            }
+            List<SAN_PHAM> pList = new List<SAN_PHAM>();
+            foreach (DataGridViewRow item in dtgvSanPham.Rows)
+            {
+                SAN_PHAM i = new SAN_PHAM();
+                i.MaSP = item.Cells[0].Value.ToString();
+                i.TenSP = item.Cells[2].Value.ToString();
+                i.MaTH = item.Cells[10].Value.ToString();
+                i.SoLuong = Convert.ToInt32(item.Cells[4].Value.ToString());
+                i.DonViTinh = item.Cells[3].Value.ToString();
+                i.GiaBan = Convert.ToInt32(item.Cells[5].Value);
+                i.GiaVon= Convert.ToInt32(item.Cells[6].Value); ;
+                pList.Add(i);
+            }
+            string path = string.Empty;
+            excel.ExportSanPham(pList, ref path, false);
+            if (!string.IsNullOrEmpty(path) && MessageBox.Show("Bạn có muốn mở file không?", "Thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start(path);
+            }
         }
 
 
@@ -1252,7 +1428,30 @@ namespace DoAn
 
         private void btnExcelTH_Click(object sender, EventArgs e)
         {
+            ExcelExport excel = new ExcelExport();
+            SaveFileDialog saveFile = new SaveFileDialog();
+            if (pnThuongHieu.Controls.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất", "ERROR");
+                return;
+            }
+            List<THUONG_HIEU> pList = new List<THUONG_HIEU>();
+            // Đổ dữ liệu vào danh sách
+            foreach (Control item in pnThuongHieu.Controls)
+            {
+                THUONG_HIEU i = new THUONG_HIEU();
+                i.MaTH = item.Tag.ToString();
+                i.TenTH = item.Text;
+                pList.Add(i);
+            }
+            string path = string.Empty;
+            excel.ExportThuongHieu(pList, ref path, false);
 
+            // Confirm for open file was exported
+            if (!string.IsNullOrEmpty(path) && MessageBox.Show("Bạn có muốn mở file không?", "Thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start(path);
+            }
         }
 
         private void btnClearTH_Click(object sender, EventArgs e)
@@ -1301,11 +1500,42 @@ namespace DoAn
                 chart1.Titles.Add("Thống kê doanh thu bán hàng");
             }    
         }
-        public void LoadBieuDo()
-        {
 
+        //private void btnPhieuLuong_Click(object sender, EventArgs e)
+        //{
+        //    if(txtTenNV.Text==""||txtCMND_NV.Text==""||txtSDT_NV.Text==""){
+        //        MessageBox.Show("Vui lòng nhập đầy đủ thông tin.","FAILED");
+        //        return;
+        //    }
+        //    WordExport r = new WordExport();
+        //    r.ThongTinLuongNV(txtTenNV.Text, dtmNgaySinhNV.Value.ToString(), cboChucVuNV.Text, txtCMND_NV.Text, txtSDT_NV.Text, "5.000.000 VNĐ", DateTime.Now.Month + "", DateTime.Now.Year + "");
+        //}
+
+        private void btnTinhLuong_Click(object sender, EventArgs e)
+        {
+            if (txtTenNV.Text == "" || txtCMND_NV.Text == "" || txtSDT_NV.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin.", "FAILED");
+                return;
+            }
+            WordExport r = new WordExport();
+            r.ThongTinLuongNV(txtTenNV.Text, dtmNgaySinhNV.Value.ToString(), cboChucVuNV.Text, txtCMND_NV.Text, txtSDT_NV.Text, "5.000.000 VNĐ", DateTime.Now.Month + "", DateTime.Now.Year + "");
+        }
+
+        private void btnInTheKH_Click(object sender, EventArgs e)
+        {
+            rptTheKH r = new rptTheKH();
+            r.DataSource = k.TimKiemKhachHang(txtMaKH.Text);
+            r.ShowPreview();
+        }
+
+        private void btnMaVachSP_Click(object sender, EventArgs e)
+        {
+            rptMaVach r = new rptMaVach();
+            r.ShowPreview();
         }
     }
+}
     
 
-}
+

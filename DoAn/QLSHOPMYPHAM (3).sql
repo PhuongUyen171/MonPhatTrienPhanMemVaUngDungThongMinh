@@ -90,7 +90,7 @@ CREATE TABLE NHAN_VIEN
 
 CREATE TABLE HOA_DON
 (	
-	MaHD nvarchar(30)  PRIMARY KEY,
+	MaHD int identity  PRIMARY KEY,
 	MaKH nvarchar(20),
 	MaNV nvarchar(10),
 	ThoiGian datetime,
@@ -102,7 +102,7 @@ CREATE TABLE HOA_DON
 
 CREATE TABLE CHI_TIET_HOA_DON
 (
-	MaHD nvarchar(30)  NOT NULL,
+	MaHD int  NOT NULL,
 	MaSP nvarchar(20)  NOT NULL,
 	GiaVon money,
 	GiaBan money,
@@ -230,7 +230,7 @@ CREATE TABLE CHI_TIET_PHIEU_TRA_HANG_BAN
 CREATE TABLE PHIEU_TRA_HANG_BAN
 (
 	MaPTB nvarchar(30) PRIMARY KEY,
-	MaHD nvarchar(30),
+	MaHD int,
 	MaNV nvarchar(30),
 	MaKH nvarchar(20),
 	ChiPhi money,
@@ -339,26 +339,26 @@ INSERT INTO LOAI_KHACH_HANG(MaLoaiKH,TenLoaiKH,GioiHanDuoi,GioiHanTren,GiamGia) 
 
 SET DATEFORMAT DMY
 INSERT INTO KHACH_HANG(MaKH,TenKH,MaLoaiKH,NgaySinh,NgayDangKy,CMND,Email,SDT,DiaChi,TongTienMua) VALUES
-('KH001',N'Nguyễn Xuân Nhật','LKH004','26-10-2000','01-01-2020',215766247,'xuannhat111222@gmail.com',01548648562,'72/34 Dương Đức Hiền,Quận Tân Phú',1000000),
-('KH002',N'Nguyễn Phương Uyên','LKH005','17-01-2001','01-01-2020',215445335,'phuonguyen111222@gmail.com',01236865475,'Số 11,Quận Bình Tân',2000000),
-('KH003',N'Nguyễn Phương Trúc','LKH005','17-02-2001','01-01-2020',215032335,'phuongtruc111222@gmail.com',02585348523,'Số 11,Quận 7',2500000),
-('KH004',N'Nguyễn Nhã Uyên','LKH001','17-03-2001','01-01-2020',215729335,'nhauyen111222@gmail.com',02586577773,'Số 311,Quận Bình Tân',2600000),
-('KH005',N'Nguyễn Kiều Phi','LKH002','17-04-2001','01-01-2020',215545335,'kieuphi111222@gmail.com',02586563443,'Số 141,Quận 2',2100000),
-('KH006',N'Nguyễn Mỹ Nương','LKH003','17-05-2001','01-01-2020',214255335,'mynuong111222@gmail.com',02586543453,'Số 411,Quận 5',3000000),
-('KH007',N'Nguyễn Tâm Như','LKH004','17-06-2001','01-01-2020',215765335,'tamnhu121222@gmail.com',02586545555,'Số 111,Quận Bình Tân',4000000),
-('KH008',N'Nguyễn Tú Anh','LKH005','17-07-2001','01-01-2020',215425735,'tuanh113222@gmail.com',02586549977,'Số 1311,Quận 4',7000000),
-('KH009',N'Nguyễn Tuyết Anh','LKH001','17-08-2001','01-01-2020',227545335,'tuyetanh241222@gmail.com',02586546754,'Số 131,Quận Bình Tân',3500000),
-('KH010',N'Nguyễn Hồng Phương','LKH002','17-09-2001','01-01-2020',247445335,'hongphuong11222@gmail.com',02586746523,'Số 11,Quận 7',6000000),
-('KH011',N'Nguyễn Thúy An','LKH003','17-10-2001','01-01-2020',215473635,'thuyan111222@gmail.com',02586541243,'Số 1211,Quận Thủ Đức',2500000),
-('KH012',N'Nguyễn Phỉ Thúy','LKH004','17-11-2000','01-01-2020',215275335,'phithuy111222@gmail.com',02586547546,'Số 131,Quận 1',2900000),
-('KH013',N'Nguyễn Khánh Vi','LKH005','17-12-2001','01-01-2020',215567335,'khanhvi111222@gmail.com',02586542574,'Số 121,Quận 8',2400000),
-('KH014',N'Nguyễn Kiều Hạnh','LKH001','17-01-2002','01-01-2020',214785335,'kieuhanh111222@gmail.com',0258655674,'Số 211,Quận Bình Tân',3600000),
-('KH015',N'Nguyễn Kiều Trang','LKH002','17-01-2003','01-01-2020',228545335,'kieutrang111222@gmail.com',02586545763,'Số 161,Quận Bình Chánh',1000000),
-('KH016',N'Nguyễn Yến Nhi','LKH003','17-01-2004','01-01-2020',215457835,'yennhi111222@gmail.com',02586456797,'Số 311,Quận Bình Tân',5000000),
-('KH017',N'Nguyễn Huyền Trân','LKH004','17-01-2005','01-01-2020',248545335,'huyentran111222@gmail.com',0258642344,'Số 211,Quận 3',4000000),
-('KH018',N'Nguyễn Châu Liên','LKH005','17-04-2002','01-01-2020',213955335,'chaulien111222@gmail.com',02586436754,'Số 91,Quận 10',4500000),
-('KH019',N'Nguyễn Yến Linh','LKH001','17-07-2003','01-01-2020',215285335,'yenlinh111222@gmail.com',02584328523,'Số 18,Quận 12',2100000),
-('KH020',N'Nguyễn Khánh Như','LKH002','17-09-2004','01-01-2020',211705335,'khanhnhu111222@gmail.com',02586542332,'Số 11,Quận 11',2200000)
+('KH001',N'Nguyễn Xuân Nhật','LKH004','26-10-2000','01-01-2020',215766247,'xuannhat111222@gmail.com',01548648562,N'72/34 Dương Đức Hiền,Quận Tân Phú',1000000),
+('KH002',N'Nguyễn Phương Uyên','LKH005','17-01-2001','01-01-2020',215445335,'phuonguyen111222@gmail.com',01236865475,N'Số 11,Quận Bình Tân',2000000),
+('KH003',N'Nguyễn Phương Trúc','LKH005','17-02-2001','01-01-2020',215032335,'phuongtruc111222@gmail.com',02585348523,N'Số 11,Quận 7',2500000),
+('KH004',N'Nguyễn Nhã Uyên','LKH001','17-03-2001','01-01-2020',215729335,'nhauyen111222@gmail.com',02586577773,N'Số 311,Quận Bình Tân',2600000),
+('KH005',N'Nguyễn Kiều Phi','LKH002','17-04-2001','01-01-2020',215545335,'kieuphi111222@gmail.com',02586563443,N'Số 141,Quận 2',2100000),
+('KH006',N'Nguyễn Mỹ Nương','LKH003','17-05-2001','01-01-2020',214255335,'mynuong111222@gmail.com',02586543453,N'Số 411,Quận 5',3000000),
+('KH007',N'Nguyễn Tâm Như','LKH004','17-06-2001','01-01-2020',215765335,'tamnhu121222@gmail.com',02586545555,N'Số 111,Quận Bình Tân',4000000),
+('KH008',N'Nguyễn Tú Anh','LKH005','17-07-2001','01-01-2020',215425735,'tuanh113222@gmail.com',02586549977,N'Số 1311,Quận 4',7000000),
+('KH009',N'Nguyễn Tuyết Anh','LKH001','17-08-2001','01-01-2020',227545335,'tuyetanh241222@gmail.com',02586546754,N'Số 131,Quận Bình Tân',3500000),
+('KH010',N'Nguyễn Hồng Phương','LKH002','17-09-2001','01-01-2020',247445335,'hongphuong11222@gmail.com',02586746523,N'Số 11,Quận 7',6000000),
+('KH011',N'Nguyễn Thúy An','LKH003','17-10-2001','01-01-2020',215473635,'thuyan111222@gmail.com',02586541243,N'Số 1211,Quận Thủ Đức',2500000),
+('KH012',N'Nguyễn Phỉ Thúy','LKH004','17-11-2000','01-01-2020',215275335,'phithuy111222@gmail.com',02586547546,N'Số 131,Quận 1',2900000),
+('KH013',N'Nguyễn Khánh Vi','LKH005','17-12-2001','01-01-2020',215567335,'khanhvi111222@gmail.com',02586542574,N'Số 121,Quận 8',2400000),
+('KH014',N'Nguyễn Kiều Hạnh','LKH001','17-01-2002','01-01-2020',214785335,'kieuhanh111222@gmail.com',0258655674,N'Số 211,Quận Bình Tân',3600000),
+('KH015',N'Nguyễn Kiều Trang','LKH002','17-01-2003','01-01-2020',228545335,'kieutrang111222@gmail.com',02586545763,N'Số 161,Quận Bình Chánh',1000000),
+('KH016',N'Nguyễn Yến Nhi','LKH003','17-01-2004','01-01-2020',215457835,'yennhi111222@gmail.com',02586456797,N'Số 311,Quận Bình Tân',5000000),
+('KH017',N'Nguyễn Huyền Trân','LKH004','17-01-2005','01-01-2020',248545335,'huyentran111222@gmail.com',0258642344,N'Số 211,Quận 3',4000000),
+('KH018',N'Nguyễn Châu Liên','LKH005','17-04-2002','01-01-2020',213955335,'chaulien111222@gmail.com',02586436754,N'Số 91,Quận 10',4500000),
+('KH019',N'Nguyễn Yến Linh','LKH001','17-07-2003','01-01-2020',215285335,'yenlinh111222@gmail.com',02584328523,N'Số 18,Quận 12',2100000),
+('KH020',N'Nguyễn Khánh Như','LKH002','17-09-2004','01-01-2020',211705335,'khanhnhu111222@gmail.com',02586542332,N'Số 11,Quận 11',2200000)
 
 SET DATEFORMAT DMY
 INSERT INTO NHAN_VIEN(MaNV,TenNV,MaCV,NgaySinh,CMND,Email,SDT,Luong) VALUES

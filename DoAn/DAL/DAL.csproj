@@ -45,6 +45,7 @@
     <Compile Include="ChucVuDAO.cs" />
     <Compile Include="dsShopMP.cs">
       <DependentUpon>dsShopMP.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="KhachHangDAO.cs" />
     <Compile Include="dsShopMP.Designer.cs">
@@ -61,11 +62,6 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="QLShopMP.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QLShopMP.dbml</DependentUpon>
     </Compile>
     <Compile Include="SaoLuuDAL.cs" />
     <Compile Include="ThongKeDAL.cs" />
@@ -89,14 +85,6 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="QLShopMP.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>QLShopMP.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="QLShopMP.dbml.layout">
-      <DependentUpon>QLShopMP.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -37,5 +37,10 @@ namespace BLL
         {
             return l.DeleteTypeCustom(ma);
         }
+
+        public DataRow TimLoaiKH(string ma)
+        {
+            return l.SearchTypeCustom(ma);
+        }
     }
 }

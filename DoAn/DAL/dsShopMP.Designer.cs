@@ -14036,6 +14036,25 @@ WHERE       MaKH = @MaKH";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy(dsShopMP.KHACH_HANGDataTable dataTable, string MaKhachHang) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((MaKhachHang == null)) {
+                throw new global::System.ArgumentNullException("MaKhachHang");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(MaKhachHang));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual dsShopMP.KHACH_HANGDataTable KiemTraKhoaChinh(string MaKhachHang) {
             this.Adapter.SelectCommand = this.CommandCollection[2];

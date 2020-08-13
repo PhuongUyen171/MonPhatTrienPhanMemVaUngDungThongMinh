@@ -37,5 +37,10 @@ namespace DAL
         {
             return l.UpdateQuery(ten, duoi, tren, sale,ma) == 1;
         }
+
+        public DataRow  SearchTypeCustom(string ma)
+        {
+            return l.KiemTraKhoaChinh(ma).FirstOrDefault();
+        }
     }
 }

@@ -42,5 +42,10 @@ namespace DAL
         {
             return kh.UpdateQuery(tenKH,maLoai,ngaySinh.ToString(),ngayDK.ToString(),cmnd,email,dt,diaChi,tongTien,maKH)==1;
         }
+
+        public DataRow SearchCustom(string ma)
+        {
+            return kh.KiemTraKhoaChinh(ma).FirstOrDefault();
+        }
     }
 }

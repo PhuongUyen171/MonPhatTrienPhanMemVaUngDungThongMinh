@@ -11,8 +11,14 @@ namespace DoAn
         string ma, ten;
         long ghTren, ghDuoi;
         int sale;
+        string _stt;
 
         //Get,set
+        public string STT
+        {
+            get { return _stt; }
+            set { _stt = value; }
+        }
         public string MaNhomKH
         {
             get { return ma; }

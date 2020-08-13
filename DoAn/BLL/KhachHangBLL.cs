@@ -6,6 +6,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
+using Microsoft.SqlServer.Server;
 
 namespace BLL
 {
@@ -18,6 +19,7 @@ namespace BLL
         {
             return kh.GetKhachHang();
         }
+
         public bool ThemKhachHang(string maKH, string tenKH, string maLoai, DateTime ngaySinh, DateTime ngayDK, string cmnd, string email, string dt, string diaChi, int tongTien)
         {
             return kh.InsertCustom(maKH, tenKH, maLoai, ngaySinh, ngayDK, cmnd, email, dt, diaChi, tongTien);
@@ -36,6 +38,11 @@ namespace BLL
         public bool SuaKhachHang(string maKH, string tenKH, string maLoai, DateTime ngaySinh, DateTime ngayDK, string cmnd, string email, string dt, string diaChi, int tongTien)
         {
             return kh.UpdateCustom(maKH, tenKH, maLoai, ngaySinh, ngayDK, cmnd, email, dt, diaChi, tongTien);
+        }
+
+        public DataRow TimKiemKhachHang(string ma)
+        {
+            return kh.SearchCustom(ma);
         }
     }
 }
