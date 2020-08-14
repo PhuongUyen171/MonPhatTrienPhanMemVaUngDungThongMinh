@@ -16,6 +16,9 @@ using System.IO;
 using System.Globalization;
 using GUI;
 using DevExpress.XtraReports.UI;
+using DevExpress.XtraCharts;
+using Series = DevExpress.XtraCharts.Series;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace DoAn
 {
@@ -38,7 +41,7 @@ namespace DoAn
         ThuongHieuBLL th = new ThuongHieuBLL();
         ThongKeBLL tk = new ThongKeBLL();
         QLShopDataContext data = new QLShopDataContext();
-
+        BLL_DAL_ThongKe ql = new BLL_DAL_ThongKe();
         public string tenDangNhap;
 
         public frmMain()
@@ -1465,40 +1468,7 @@ namespace DoAn
 
         public void radio_CheckedChanged(object sender, EventArgs e)
         {
-            if(rdNam.Checked)
-            {
-                DataTable dt = new DataTable();
-                dt = tk.ThongKeTheoNam(2017, DateTime.Now.Year);
-                foreach (DataRow row in dt.Rows)
-                {
-                    int ThoiGian = int.Parse(row["NAM"].ToString());
-                    int Tien = int.Parse(row["TONGTIEN"].ToString());
-
-                    chart1.Series["Doanh thu"].Points.Add(ThoiGian,Tien);
-                }
-                chart1.Refresh();
-                //chart1.Series["Doanh thu"].Points.Clear();
-                //chart1.DataSource = tk.ThongKeTheoNam(2017,DateTime.Now.Year);
-                //chart1.Series["Doanh thu"].XValueMember = "NAM";
-                //chart1.Series["Doanh thu"].YValueMembers = "TONGTIEN";
-                //chart1.Titles.Add("Thống kê doanh thu bán hàng");
-            }   
-            else if(rdThang.Checked)
-            {
-                //chart1.Series["Doanh thu"].Points.Clear();
-                var tatca = from n in data.HOA_DONs select new {THANG = n.ThoiGian.Value.Year, tongCong = n.TongTien };
-                chart1.DataSource = tatca;
-                chart1.Series["Doanh thu"].XValueMember = "THANG";
-                chart1.Series["Doanh thu"].YValueMembers = "TONGTIEN";
-                chart1.Titles.Add("Thống kê doanh thu bán hàng");
-            }   
-            else
-            {
-                chart1.DataSource = sp.GetSanPham();
-                chart1.Series["Doanh thu"].XValueMember = "TenSP";
-                chart1.Series["Doanh thu"].YValueMembers = "GIAVON";
-                chart1.Titles.Add("Thống kê doanh thu bán hàng");
-            }    
+            
         }
 
         //private void btnPhieuLuong_Click(object sender, EventArgs e)
@@ -1533,6 +1503,417 @@ namespace DoAn
         {
             rptMaVach r = new rptMaVach();
             r.ShowPreview();
+        }
+
+        private void tableLayoutPanel13_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void accordionControlElement6_Click(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+
+
+                DateTime daynow = DateTime.Now;
+                ChartControl myChart2 = chartControl1;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemhoadonTheoNgay(Convert.ToDateTime(daynow.ToShortDateString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "TongTien" });
+                XYDiagram diagram = chartControl1.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+
+            }
+            if (radioButton2.Checked)
+            {
+                DateTime daynow = DateTime.Now;
+                ChartControl myChart2 = chartControl1;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemhoadonTheoNgay(Convert.ToDateTime(daynow.ToShortDateString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "GiamGia" });
+                XYDiagram diagram = chartControl1.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+
+        }
+
+        private void tabMain_Click(object sender, EventArgs e)
+        {
+
+        }
+        public DateTime layNgayDauThang()
+        {
+            string text = DateTime.Now.ToString("dd/MM/yyyy");
+            string str = text.Substring(3, 2);
+            return DateTime.ParseExact("01/" + str + "/" + DateTime.Now.Year.ToString(), "dd/MM/yyyy", null);
+        }
+        private void accordionControlElement7_Click(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+
+                DateTime daynow = DateTime.Now;
+                DateTime dauThang = layNgayDauThang();
+                ChartControl myChart2 = chartControl1;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemhoadon(Convert.ToDateTime(dauThang.ToShortDateString()), Convert.ToDateTime(daynow.ToShortDateString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "TongTien" });
+                XYDiagram diagram = chartControl1.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+            if (radioButton2.Checked)
+            {
+                DateTime daynow = DateTime.Now;
+                DateTime dauThang = layNgayDauThang();
+                ChartControl myChart2 = chartControl1;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemhoadon(Convert.ToDateTime(dauThang.ToShortDateString()), Convert.ToDateTime(daynow.ToShortDateString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "GiamGia" });
+                XYDiagram diagram = chartControl1.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+        }
+
+        private void accordionControlElement8_Click(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                DateTime LastMonthLastDate = DateTime.Today.AddDays(0 - DateTime.Today.Day);
+                DateTime LastMonthFirstDate = LastMonthLastDate.AddDays(1 - LastMonthLastDate.Day);
+
+                ChartControl myChart2 = chartControl1;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemhoadon(Convert.ToDateTime(LastMonthFirstDate.ToShortDateString()), Convert.ToDateTime(LastMonthLastDate.ToShortDateString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "TongTien" });
+                XYDiagram diagram = chartControl1.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+            if (radioButton2.Checked)
+            {
+                DateTime LastMonthLastDate = DateTime.Today.AddDays(0 - DateTime.Today.Day);
+                DateTime LastMonthFirstDate = LastMonthLastDate.AddDays(1 - LastMonthLastDate.Day);
+
+                ChartControl myChart2 = chartControl1;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemhoadon(Convert.ToDateTime(LastMonthFirstDate.ToShortDateString()), Convert.ToDateTime(LastMonthLastDate.ToShortDateString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "GiamGia" });
+                XYDiagram diagram = chartControl1.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+        }
+
+        private void accordionControlElement9_Click(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                ChartControl myChart2 = chartControl1;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemhoadonTheoNam(Convert.ToDateTime(DateTime.Now.ToString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "TongTien" });
+                XYDiagram diagram = chartControl1.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+            if (radioButton2.Checked)
+            {
+                ChartControl myChart2 = chartControl1;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemhoadonTheoNam(Convert.ToDateTime(DateTime.Now.ToString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "GiamGia" });
+                XYDiagram diagram = chartControl1.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+        }
+        class OhlcAggregateFunction : CustomAggregateFunction
+        {
+            public override double[] Calculate(GroupInfo groupInfo)
+            {
+                double open = groupInfo.Values1.First();
+                double close = groupInfo.Values1.Last();
+                double high = Double.MinValue;
+                double low = Double.MaxValue;
+                foreach (double value in groupInfo.Values1)
+                {
+                    if (high < value) high = value;
+                    if (low > value) low = value;
+                }
+
+                return new double[] { high, low, open, close };
+            }
+        }
+        private void accordionControlElement10_Click(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                ChartControl myChart2 = chartControl1;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemhoadonTheoNamTruoc(Convert.ToDateTime(DateTime.Now.ToString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "TongTien" });
+                XYDiagram diagram = chartControl1.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+            if (radioButton2.Checked)
+            {
+                ChartControl myChart2 = chartControl1;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemhoadonTheoNamTruoc(Convert.ToDateTime(DateTime.Now.ToString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "GiamGia" });
+                XYDiagram diagram = chartControl1.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+        }
+
+        private void accordionControlElement11_Click(object sender, EventArgs e)
+        {
+            frmDanhSachHoaDon a = new frmDanhSachHoaDon();
+            a.ShowDialog();
+        }
+
+        private void buttonItem1_Click(object sender, EventArgs e)
+        {
+            ButtonItem btn = (ButtonItem)sender as ButtonItem;
+            foreach (TabItem item in tabMain.Tabs)
+            {
+                if (string.Compare(item.Name, btn.Tag + "", true) == 0)
+                {
+                    if (item.Visible == false)
+                        item.Visible = true;
+                    tabMain.SelectedTab = item;
+
+                }
+            }
+        }
+
+        private void accordionControlElement16_Click(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+
+
+                DateTime daynow = DateTime.Now;
+                ChartControl myChart2 = chartControl2;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemPhieuTraTheoNgay(Convert.ToDateTime(daynow.ToShortDateString()));
+                Series series1 = new Series("Tổng chi phí trả", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "ChiPhi" });
+                XYDiagram diagram = chartControl2.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+
+            }
+            if (radioButton4.Checked)
+            {
+                DateTime daynow = DateTime.Now;
+                ChartControl myChart2 = chartControl2;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemPhieuTraTheoNgay(Convert.ToDateTime(daynow.ToShortDateString()));
+                Series series1 = new Series("Tổng tiền trả", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "TongTien" });
+                XYDiagram diagram = chartControl2.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+        }
+
+        private void accordionControlElement17_Click(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+
+                DateTime daynow = DateTime.Now;
+                DateTime dauThang = layNgayDauThang();
+                ChartControl myChart2 = chartControl2;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemPhieutraHangTheoKhoan(Convert.ToDateTime(dauThang.ToShortDateString()), Convert.ToDateTime(daynow.ToShortDateString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "ChiPhi" });
+                XYDiagram diagram = chartControl2.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+            if (radioButton4.Checked)
+            {
+                DateTime daynow = DateTime.Now;
+                DateTime dauThang = layNgayDauThang();
+                ChartControl myChart2 = chartControl2;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemPhieutraHangTheoKhoan(Convert.ToDateTime(dauThang.ToShortDateString()), Convert.ToDateTime(daynow.ToShortDateString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "TongTien" });
+                XYDiagram diagram = chartControl2.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+        }
+
+        private void accordionControlElement18_Click(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+                DateTime LastMonthLastDate = DateTime.Today.AddDays(0 - DateTime.Today.Day);
+                DateTime LastMonthFirstDate = LastMonthLastDate.AddDays(1 - LastMonthLastDate.Day);
+
+                ChartControl myChart2 = chartControl2;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemPhieutraHangTheoKhoan(Convert.ToDateTime(LastMonthFirstDate.ToShortDateString()), Convert.ToDateTime(LastMonthLastDate.ToShortDateString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "ChiPhi" });
+                XYDiagram diagram = chartControl2.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+            if (radioButton4.Checked)
+            {
+                DateTime LastMonthLastDate = DateTime.Today.AddDays(0 - DateTime.Today.Day);
+                DateTime LastMonthFirstDate = LastMonthLastDate.AddDays(1 - LastMonthLastDate.Day);
+
+                ChartControl myChart2 = chartControl2;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemPhieutraHangTheoKhoan(Convert.ToDateTime(LastMonthFirstDate.ToShortDateString()), Convert.ToDateTime(LastMonthLastDate.ToShortDateString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "TongTien" });
+                XYDiagram diagram = chartControl2.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+        }
+
+        private void accordionControlElement19_Click(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+                ChartControl myChart2 = chartControl2;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemPhieunTheoNam(Convert.ToDateTime(DateTime.Now.ToString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "ChiPhi" });
+                XYDiagram diagram = chartControl2.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+            if (radioButton4.Checked)
+            {
+                ChartControl myChart2 = chartControl2;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemPhieunTheoNam(Convert.ToDateTime(DateTime.Now.ToString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "TongTien" });
+                XYDiagram diagram = chartControl2.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+        }
+
+        private void accordionControlElement20_Click(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+                ChartControl myChart2 = chartControl2;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemPhieuTheoNamTruoc(Convert.ToDateTime(DateTime.Now.ToString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "ChiPhi" });
+                XYDiagram diagram = chartControl2.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+            if (radioButton4.Checked)
+            {
+                ChartControl myChart2 = chartControl2;
+                myChart2.Series.Clear();
+
+                myChart2.DataSource = ql.timKiemPhieuTheoNamTruoc(Convert.ToDateTime(DateTime.Now.ToString()));
+                Series series1 = new Series("Tổng tiền", ViewType.Bar);
+                myChart2.Series.Add(series1);
+                series1.ArgumentDataMember = "ThoiGian";
+                series1.ValueDataMembers.AddRange(new string[] { "TongTien" });
+                XYDiagram diagram = chartControl2.Diagram as XYDiagram;
+                diagram.AxisX.DateTimeScaleOptions.AggregateFunction = AggregateFunction.Sum;
+                diagram.AxisX.DateTimeScaleOptions.CustomAggregateFunction = new OhlcAggregateFunction();
+            }
+        }
+
+        private void accordionControlElement22_Click(object sender, EventArgs e)
+        {
+            frm_DanhSachTraHangBan a = new frm_DanhSachTraHangBan();
+            a.ShowDialog();
         }
     }
 }

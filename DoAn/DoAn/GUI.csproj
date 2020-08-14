@@ -127,6 +127,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DXApplication1\Report\bin\Debug\DevExpress.XtraCharts.v19.2.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.XtraCharts.v19.2.UI, Version=19.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v19.2.Wizard, Version=19.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DXApplication1\Report\bin\Debug\DevExpress.XtraCharts.v19.2.Wizard.dll</HintPath>
@@ -241,6 +242,12 @@
     <Compile Include="frmDangNhap.Designer.cs">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDanhSachHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhSachHoaDon.Designer.cs">
+      <DependentUpon>frmDanhSachHoaDon.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDoiMatKhau.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -331,6 +338,12 @@
     <Compile Include="frmTimKiem.Designer.cs">
       <DependentUpon>frmTimKiem.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_DanhSachTraHangBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_DanhSachTraHangBan.Designer.cs">
+      <DependentUpon>frm_DanhSachTraHangBan.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginResult.cs" />
     <Compile Include="NguoiDung.cs" />
     <Compile Include="NhomKhachHang.cs" />
@@ -348,6 +361,18 @@
     <Compile Include="rptTheKH.Designer.cs">
       <DependentUpon>rptTheKH.cs</DependentUpon>
     </Compile>
+    <Compile Include="rptThongKeBanHang.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptThongKeBanHang.Designer.cs">
+      <DependentUpon>rptThongKeBanHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="rptThongKeTraHang.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptThongKeTraHang.Designer.cs">
+      <DependentUpon>rptThongKeTraHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="WordExport\Global.cs" />
     <Compile Include="WordExport\WordExport.cs" />
     <EmbeddedResource Include="frmCauHinh.resx">
@@ -361,6 +386,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhSachHoaDon.resx">
+      <DependentUpon>frmDanhSachHoaDon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDoiMatKhau.resx">
       <DependentUpon>frmDoiMatKhau.cs</DependentUpon>
@@ -407,6 +435,9 @@
     <EmbeddedResource Include="frmTimKiem.resx">
       <DependentUpon>frmTimKiem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_DanhSachTraHangBan.resx">
+      <DependentUpon>frm_DanhSachTraHangBan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -423,6 +454,14 @@
     <EmbeddedResource Include="rptTheKH.resx">
       <DependentUpon>rptTheKH.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="rptThongKeBanHang.resx">
+      <DependentUpon>rptThongKeBanHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptThongKeTraHang.resx">
+      <DependentUpon>rptThongKeTraHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\BLL_DAL.QLShopDataContext.datasource" />
+    <None Include="Properties\DataSources\DAL.dsShopMP.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

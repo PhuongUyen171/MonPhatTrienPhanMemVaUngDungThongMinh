@@ -25,7 +25,7 @@ namespace DoAn.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=UYENPU\\SQLEXPRESS;Initial Catalog=QLShopMP;User ID=sa;Password=uyen")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;Initial Catalog=QLShopMP;User ID=sa;Password=123")]
         public string ShopMyPham {
             get {
                 return ((string)(this["ShopMyPham"]));
@@ -38,7 +38,7 @@ namespace DoAn.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=UYENPU\\SQLEXPRESS;Initial Catalog=QLShopMP;User ID=sa;Password=uyen")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;Initial Catalog=QLShopMP;User ID=sa;Password=123")]
         public string ShopMPConnection {
             get {
                 return ((string)(this["ShopMPConnection"]));
