@@ -12,6 +12,7 @@ namespace BLL
 {
     public class KhachHangBLL
     {
+        
         KhachHangDAO kh = new KhachHangDAO();
         public KhachHangBLL() { }
         

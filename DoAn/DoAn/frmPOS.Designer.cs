@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPOS));
             this.btnThanhToan = new DevComponents.DotNetBar.ButtonX();
             this.lbTienThua = new DevComponents.DotNetBar.LabelX();
@@ -51,17 +51,22 @@
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
             this.dtgvDonHang = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMaSP = new System.Windows.Forms.TextBox();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.numbericTextbox1 = new ThietKeControl.NumbericTextbox();
+            this.btnTaoMoiHD = new System.Windows.Forms.Button();
+            this.txtSL = new ThietKeControl.NumbericTextbox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtThanhToan = new ThietKeControl.NumbericTextbox();
             this.lbLoaiThe = new DevComponents.DotNetBar.LabelX();
             this.txtMaKH = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtThanhToan = new ThietKeControl.NumbericTextbox();
-            this.btnTaoMoiHD = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDonHang)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -78,6 +83,7 @@
             this.btnThanhToan.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnThanhToan.TabIndex = 19;
             this.btnThanhToan.Text = "THANH TOÁN";
+            this.btnThanhToan.Click += new System.EventHandler(this.btnThanhToan_Click);
             // 
             // lbTienThua
             // 
@@ -296,21 +302,31 @@
             // 
             // dtgvDonHang
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dtgvDonHang.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dtgvDonHang.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dtgvDonHang.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtgvDonHang.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvDonHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgvDonHang.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dtgvDonHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgvDonHang.DefaultCellStyle = dataGridViewCellStyle2;
             this.dtgvDonHang.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvDonHang.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dtgvDonHang.Location = new System.Drawing.Point(3, 120);
+            this.dtgvDonHang.MultiSelect = false;
             this.dtgvDonHang.Name = "dtgvDonHang";
+            this.dtgvDonHang.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvDonHang.Size = new System.Drawing.Size(759, 463);
             this.dtgvDonHang.TabIndex = 1;
             // 
@@ -326,12 +342,13 @@
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX1.TabIndex = 8;
             // 
-            // textBox1
+            // txtMaSP
             // 
-            this.textBox1.Location = new System.Drawing.Point(247, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(431, 24);
-            this.textBox1.TabIndex = 6;
+            this.txtMaSP.Location = new System.Drawing.Point(247, 13);
+            this.txtMaSP.Name = "txtMaSP";
+            this.txtMaSP.Size = new System.Drawing.Size(431, 24);
+            this.txtMaSP.TabIndex = 6;
+            this.txtMaSP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMaSP_KeyDown);
             // 
             // labelX2
             // 
@@ -361,9 +378,9 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.btnTaoMoiHD);
-            this.panel1.Controls.Add(this.numbericTextbox1);
+            this.panel1.Controls.Add(this.txtSL);
             this.panel1.Controls.Add(this.buttonX1);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txtMaSP);
             this.panel1.Controls.Add(this.labelX2);
             this.panel1.Controls.Add(this.labelX1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -372,13 +389,24 @@
             this.panel1.Size = new System.Drawing.Size(759, 111);
             this.panel1.TabIndex = 0;
             // 
-            // numbericTextbox1
+            // btnTaoMoiHD
             // 
-            this.numbericTextbox1.Location = new System.Drawing.Point(247, 48);
-            this.numbericTextbox1.Name = "numbericTextbox1";
-            this.numbericTextbox1.Size = new System.Drawing.Size(431, 24);
-            this.numbericTextbox1.TabIndex = 9;
-            this.numbericTextbox1.Text = "1";
+            this.btnTaoMoiHD.Location = new System.Drawing.Point(18, 15);
+            this.btnTaoMoiHD.Name = "btnTaoMoiHD";
+            this.btnTaoMoiHD.Size = new System.Drawing.Size(80, 60);
+            this.btnTaoMoiHD.TabIndex = 10;
+            this.btnTaoMoiHD.Text = "Tạo mới đơn hàng";
+            this.btnTaoMoiHD.UseVisualStyleBackColor = true;
+            this.btnTaoMoiHD.Click += new System.EventHandler(this.btnTaoMoiHD_Click);
+            // 
+            // txtSL
+            // 
+            this.txtSL.Location = new System.Drawing.Point(247, 48);
+            this.txtSL.Name = "txtSL";
+            this.txtSL.Size = new System.Drawing.Size(431, 24);
+            this.txtSL.TabIndex = 9;
+            this.txtSL.Text = "1";
+            this.txtSL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSL_KeyDown);
             // 
             // panel2
             // 
@@ -409,6 +437,14 @@
             this.tableLayoutPanel1.SetRowSpan(this.panel2, 2);
             this.panel2.Size = new System.Drawing.Size(322, 580);
             this.panel2.TabIndex = 2;
+            // 
+            // txtThanhToan
+            // 
+            this.txtThanhToan.Location = new System.Drawing.Point(132, 416);
+            this.txtThanhToan.Name = "txtThanhToan";
+            this.txtThanhToan.Size = new System.Drawing.Size(170, 24);
+            this.txtThanhToan.TabIndex = 22;
+            this.txtThanhToan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtThanhToan_KeyDown);
             // 
             // lbLoaiThe
             // 
@@ -457,23 +493,36 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1093, 586);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // txtThanhToan
+            // Column1
             // 
-            this.txtThanhToan.Location = new System.Drawing.Point(132, 416);
-            this.txtThanhToan.Name = "txtThanhToan";
-            this.txtThanhToan.Size = new System.Drawing.Size(170, 24);
-            this.txtThanhToan.TabIndex = 22;
-            this.txtThanhToan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtThanhToan_KeyDown);
+            this.Column1.DataPropertyName = "MaHD";
+            this.Column1.HeaderText = "Mã HD";
+            this.Column1.Name = "Column1";
             // 
-            // btnTaoMoiHD
+            // Column2
             // 
-            this.btnTaoMoiHD.Location = new System.Drawing.Point(18, 15);
-            this.btnTaoMoiHD.Name = "btnTaoMoiHD";
-            this.btnTaoMoiHD.Size = new System.Drawing.Size(80, 60);
-            this.btnTaoMoiHD.TabIndex = 10;
-            this.btnTaoMoiHD.Text = "Tạo mới đơn hàng";
-            this.btnTaoMoiHD.UseVisualStyleBackColor = true;
-            this.btnTaoMoiHD.Click += new System.EventHandler(this.btnTaoMoiHD_Click);
+            this.Column2.DataPropertyName = "SAN_PHAM.TenSP";
+            this.Column2.HeaderText = "Tên sản phẩm";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "SoLuong";
+            this.Column3.HeaderText = "Số lượng";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "GiaBan";
+            this.Column4.HeaderText = "Đơn giá";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "GiaVon";
+            this.Column5.HeaderText = "Column5";
+            this.Column5.Name = "Column5";
+            this.Column5.Visible = false;
             // 
             // frmPOS
             // 
@@ -521,16 +570,21 @@
         private DevComponents.DotNetBar.LabelX labelX3;
         private DevComponents.DotNetBar.Controls.DataGridViewX dtgvDonHang;
         private DevComponents.DotNetBar.ButtonX buttonX1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMaSP;
         private DevComponents.DotNetBar.LabelX labelX2;
         private DevComponents.DotNetBar.LabelX labelX1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private ThietKeControl.NumbericTextbox numbericTextbox1;
+        private ThietKeControl.NumbericTextbox txtSL;
         private DevComponents.DotNetBar.Controls.TextBoxX txtMaKH;
         private DevComponents.DotNetBar.LabelX lbLoaiThe;
         private ThietKeControl.NumbericTextbox txtThanhToan;
         private System.Windows.Forms.Button btnTaoMoiHD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }

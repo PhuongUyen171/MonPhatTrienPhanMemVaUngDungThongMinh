@@ -17,9 +17,11 @@ namespace DoAn
     {
         public NHAN_VIEN NhanVien;
 
+        
         KhachHangBLL kh = new KhachHangBLL();
         LoaiKhachHangBLL l = new LoaiKhachHangBLL();
         HoaDonBLL h = new HoaDonBLL();
+        SanPhamBLL s = new SanPhamBLL();
         public frmPOS()
         {
             InitializeComponent();
@@ -79,8 +81,48 @@ namespace DoAn
         int maHD;
         private void btnTaoMoiHD_Click(object sender, EventArgs e)
         {
-            h.ThemHoaDon(txtMaKH.Text, NhanVien.MaNV, DateTime.Now, int.Parse(lbGiamGia.Text.Remove(lbGiamGia.Text.Length - 1, 1)));
+            if(txtMaKH.Text=="")
+            {
+                MessageBox.Show("Vui lòng nhập thông tin khách hàng.","FAILED");
+                return;
+            }    
+            maHD=h.ThemHoaDon(txtMaKH.Text, NhanVien.MaNV, DateTime.Now, int.Parse(lbGiamGia.Text.Remove(lbGiamGia.Text.Length - 1, 1)));
+            MessageBox.Show("Tạo mới thành công.","SUCEED");
+        }
+        public void LoadDTGV()
+        {
+            dtgvDonHang.DataSource = h.GetCTHD(maHD);
+        }
 
+        private void txtMaSP_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (!s.KiemTraKhoaChinh(txtMaSP.Text)){
+                    MessageBox.Show("Sản phẩm không tồn tại.","FAILED");
+                    return;
+                }
+                h.ThemCTHD(maHD, txtMaSP.Text, int.Parse(txtSL.Text));
+                LoadDTGV();
+                lbTongTien.Text = string.Format("{0:0,0}", h.GetTongTienHoaDon(24));
+            }
+        }
+
+        private void btnThanhToan_Click(object sender, EventArgs e)
+        {
+            //Xuất report 
+            //Lưu 
+            //maHD = 0;
+            MessageBox.Show(string.Format("{0:0,0}", h.GetTongTienHoaDon(24)));
+        }
+
+        private void txtSL_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) { 
+            h.SuaCTHD(maHD, txtMaSP.Text, int.Parse(txtSL.Text));
+            LoadDTGV();
+            lbTongTien.Text = string.Format("{0:0,0}", h.GetTongTienHoaDon(maHD));
+        }
         }
     }
 }
